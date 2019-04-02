@@ -1,4 +1,7 @@
-### 1.常用类源码学习
+## Java基础
+### 1.常用类源码学习(基于JDK1.8)
+[String源码学习](String源码学习.md)
+
 String、Integer、Long、Enum、BigDecimal、ThreadLocal、ClassLoader & URLClassLoader、ArrayList & LinkedList、 HashMap & LinkedHashMap & TreeMap & CouncurrentHashMap、HashSet & LinkedHashSet & TreeSet
 ### 2.变量类型
 ### 3.String各种函数
