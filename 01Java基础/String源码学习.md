@@ -1,4 +1,4 @@
-## String源码学习
+## Java String类
 学习String源码之前先了解变量的声明及赋值
 
 ```java
