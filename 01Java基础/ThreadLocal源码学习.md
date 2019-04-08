@@ -97,6 +97,47 @@ public void set(T value) {
 - 每个线程需要有自己单独的实例
 - 实例需要在多个方法中共享，但不希望被多线程共享
 
+```java 
+# 学习使用的测试代码
+public static void main(String[] args) throws InterruptedException {
+	CountDownLatch downLatch = new CountDownLatch(1);
+	for (int i = 0; i < 5; i++) {
+		final Thread t = new Thread() {
+			@Override
+			public void run() {
+				System.out.println("当前线程:" + Thread.currentThread().getName() + ",已分配ID:" + ThreadId.get());
+				try {
+					downLatch.await();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("End");
+			}
+		};
+		t.start();
+	}
+	downLatch.countDown();
+	System.out.println(1111);
+}
+
+static class ThreadId {
+	// 一个递增的序列，使用AtomicInger原子变量保证线程安全
+	private static final AtomicInteger nextId = new AtomicInteger(0);
+	// 线程本地变量，为每个线程关联一个唯一的序号
+	private static final ThreadLocal<Integer> threadId = new ThreadLocal<Integer>() {
+		@Override
+		protected Integer initialValue() {
+			return nextId.getAndIncrement();// 相当于nextId++,由于nextId++这种操作是个复合操作而非原子操作，会有线程安全问题(可能在初始化时就获取到相同的ID，所以使用原子变量
+		}
+	};
+
+	// 返回当前线程的唯一的序列，如果第一次get，会先调用initialValue，后面看源码就了解了
+	public static int get() {
+		return threadId.get();
+	}
+}
+```
+
 ### 总结
 
 - ThreadLocal 并不解决线程间共享数据的问题
