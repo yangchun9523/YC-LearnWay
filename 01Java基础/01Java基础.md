@@ -8,7 +8,13 @@
 [ClassLoader源码学习](ClassLoader源码学习.md)
 
 #### Java数据结构源码学习
-[List源码学习](List源码学习.md)  
+
+- list  
+	[ArrayList源码学习](ArrayList源码学习.md)  
+	[LinkedList源码学习](LinkedList源码学习.md)  
+	[CopyOnWriteArrayList源码学习](CopyOnWriteArrayList源码学习.md)
+- map
+
 [Map源码学习](Map源码学习.md)  
 [Set源码学习](Set源码学习.md)  
 String、Integer、Long、Enum、BigDecimal、ThreadLocal、ClassLoader & URLClassLoader、ArrayList & LinkedList、 HashMap & LinkedHashMap & TreeMap & CouncurrentHashMap、HashSet & LinkedHashSet & TreeSet

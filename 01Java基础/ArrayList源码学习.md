@@ -1,4 +1,4 @@
-## Java之ArrayList
+## Java ArrayList类
 ### ArrayList简介
 ArrayList是我们经常使用的一个数据结构，我们通常把其用作一个可变长度的动态数组使用。
 #### 特点
