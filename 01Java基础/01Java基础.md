@@ -18,9 +18,8 @@
 	[LinkedHashMap源码学习](LinkedHashMap源码学习.md)  
 	[ConcurrentHashMap源码学习](ConcurrentHashMap源码学习.md)  
 - set  
-	[Set源码学习](Set源码学习.md)  
+	HashSet源码学习,内部使用HashMap<E,Object>  
 
-String、Integer、Long、Enum、BigDecimal、ThreadLocal、ClassLoader & URLClassLoader、ArrayList & LinkedList、 HashMap & LinkedHashMap & TreeMap & CouncurrentHashMap、HashSet & LinkedHashSet & TreeSet
 ### 2.变量类型
 ### 3.String各种函数
 JDK 6和JDK 7中substring的原理及区别、
