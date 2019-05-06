@@ -21,20 +21,90 @@
 	HashSet源码学习,内部使用HashMap<E,Object>  
 
 ### 2.变量类型
+
+- 局部变量
+	- 没有默认值,声明后必须初始化才能使用。
+	- 局部变量在方法、构造方法、或者语句块被执行的时候创建,当它们执行完成后,变量将会被销毁。
+- 实例变量 (成员变量)
+	- 有默认值,数值型变量的默认值是0,布尔型变量的默认值是false,引用类型变量的默认值是null。
+	- 实例变量在对象创建的时候创建,在对象被销毁的时候销毁。
+- 静态变量 (类变量)
+	- 有默认值与实例变量一致。
+	- 静态变量在程序开始时创建,在程序结束时销毁。
+	- 类变量被声明为public static final类型时，类变量名称必须使用大写字母。
+
 ### 3.String各种函数
-JDK 6和JDK 7中substring的原理及区别、
+### 3.1 substring的原理
+jdk1.7之后，substring方法通过原字符串创建了一个新的String对象。
+### 3.2 replaceFirst、replaceAll、replace的区别
+replaceFirst 匹配并替换第一个命中的，参数是正则表达式  
+replaceAll 匹配并替换所有命中的，参数是正则表达式  
+replace 参数为字符时，是循环替换字符。参数为字符集时和replaceAll相似,具体实现使用正则。  
+### 3.3 String对“+”的重载
+反编译可以看出，String对“+”的支持其实就是使用了StringBuilder以及他的append、toString两个方法。
+### 3.4 String.valueOf和Integer.toString的区别
+`Integer.toString(int i)`该方法返回指定整数的有符号位的String对象，以10进制字符串形式返回   
+`String.valueOf()`有很多重载方法,其中以`int`为参数时，实际调用了`Integer.toString`方法。  
+### 3.5 String的不可变性
+源码上`private final char value[];`String内部实际存储数据的属性 char数组 不可变。
 
-replaceFirst、replaceAll、replace区别、
-
-String对“+”的重载、
-
-String.valueOf和Integer.toString的区别、
-
-字符串的不可变性
 ### 4.自动拆装箱
-Integer的缓存机制
+Java是一种强类型语言，第一次声明变量必须说明数据类型，第一次变量赋值称为变量的初始化。 
+Java提供了基本数据类型，这种数据的变量不需要使用new创建，他们不会在堆上创建，而是直接在栈内存中存储，因此会更加高效。   
+Java基本类型共有八种，基本类型可以分为三类：  
+ 
+- 字符类型char
+- 布尔类型boolean
+- 整数类型byte、short、int、long
+- 浮点数类型float、double
+
+Java语言是一个面向对象的语言，但是Java中的基本数据类型却是不面向对象的。这在实际使用时存在很多的不便(不具有对象的性质<属性、方法>)，为了解决这个不足，在设计类时为每个基本数据类型设计了一个对应的类进行代表，这样八个和基本数据类型对应的类统称为包装类(Wrapper Class)。
+
+基本数据类型|包装类
+:---:|:---:
+byte|Byte
+boolean|Boolean
+short|Short
+char|Character
+int|Integer
+long|Long
+float|Float
+double|Double
+
+#### 4.1自动拆箱与自动装箱
+自动装箱: 就是将基本数据类型自动转换成对应的包装类。  
+自动拆箱：就是将包装类自动转换成对应的基本数据类型。  
+
+```java
+Integer i =10;  //自动装箱
+int b= i;     //自动拆箱
+```
+原理
+
+```java 
+Integer integer=Integer.valueOf(10);  //自动装箱
+int i=integer.intValue(); //自动拆箱
+```
+#### 4.2Integer的缓存机制
+缓存机制作用: 节省内存、提升性能。
+源码部分:
+
+```java
+	public static Integer valueOf(int i) {
+        if (i >= IntegerCache.low && i <= IntegerCache.high)
+            return IntegerCache.cache[i + (-IntegerCache.low)];
+        return new Integer(i);
+    }
+```
+
 ### 5.熟悉Java中各种关键字
-transient、instanceof、volatile、synchronized、final、static、const 原理及用法。
+- transient 让被修饰的成员变量不被序列化
+- instanceof 用来在运行时指出对象是否是特定类的一个实例
+- volatile 被修饰的成员变量在每次被线程访问时，都强迫从主内存中重读该成员变量的值。而当成员变量发生变化时，强迫线程将变化值回写到主内存。
+- synchronized 确保线程互斥的访问同步代码
+- final 被修饰的 变量不可改变|方法不可覆盖|类不可继承
+- static 被修饰为变量静态变量|方法为静态方法
+
 ### 集合类
 常用集合类的使用
 
