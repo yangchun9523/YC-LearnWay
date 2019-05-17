@@ -71,7 +71,7 @@ long|Long
 float|Float
 double|Double
 
-#### 4.1自动拆箱与自动装箱
+#### 4.1 自动拆箱与自动装箱
 自动装箱: 就是将基本数据类型自动转换成对应的包装类。  
 自动拆箱：就是将包装类自动转换成对应的基本数据类型。  
 
@@ -85,7 +85,7 @@ int b= i;     //自动拆箱
 Integer integer=Integer.valueOf(10);  //自动装箱
 int i=integer.intValue(); //自动拆箱
 ```
-#### 4.2Integer的缓存机制
+#### 4.2 Integer的缓存机制
 缓存机制作用: 节省内存、提升性能。
 源码部分:
 
@@ -105,26 +105,31 @@ int i=integer.intValue(); //自动拆箱
 - final 被修饰的 变量不可改变|方法不可覆盖|类不可继承
 - static 被修饰为变量静态变量|方法为静态方法
 
-### 集合类
-常用集合类的使用
+### 6.集合类
 
-ArrayList和LinkedList和Vector的区别 
+#### 6.1 ArrayList和LinkedList的区别 
+1. ArrayList基于动态数组的数据结构，LinkedList基于链表的数据结构。
+2. 对于随机访问get和set，ArrayList觉得优于LinkedList，因为LinkedList要移动指针。 
+3. 对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList要移动数据。 
 
-SynchronizedList和Vector的区别
+#### 6.2 SynchronizedList和Vector的区别
+1. SynchronizedList有很好的扩展和兼容功能，可以将所有的List的子类转成线程安全的类。
+2. 使用SynchronizedList的时候，进行遍历时要手动进行同步处理。 Vector不用。
+3. SynchronizedList可以指定锁定的对象。
+4. Voctor性能更好一点,处理更迅速。
 
-HashMap、HashTable、ConcurrentHashMap区别
+#### 6.3 HashMap、HashTable、ConcurrentHashMap区别
+1. HashTable的Key和value都要不允许为NULL。
+2. HashTable使用synchronized锁住整张表，多线程竞争激烈时效率低下。
 
-Java 8中stream相关用法
+#### 6.4 Java 8中stream相关用法
+[Jdk8 stream用法](Java8-Stream用法.md)
 
-apache集合处理工具类的使用
+### 7. 枚举
+[Enum源码学习](Enum源码学习.md) 
 
-不同版本的JDK中HashMap的实现的区别以及原因
-
-### 枚举
-枚举的用法、枚举与单例、Enum类
-
-### Java IO&Java NIO，并学会使用
-bio、nio和aio的区别、三种IO的用法与原理、netty
+### 8. Java IO&Java NIO学习使用
+[JavaIO的学习及使用](JavaIO学习.md)
 
 ### Java反射与javassist
 反射与工厂模式、 java.lang.reflect.*
