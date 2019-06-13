@@ -89,6 +89,15 @@ git rm test.java
 # 9.将文件从仓库中删除
 git commit -m'描述消息'
 
+# 10.创建分支
+git checkout -b develop
+
+# 11.检出远程分支
+git checkout -t origin/develop
+
+# 12.非快进方式合并分支
+git merge --no-ff develop
+
 ```
 
 ### 4. github/gitlab管理多个ssh key
